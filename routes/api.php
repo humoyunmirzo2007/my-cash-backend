@@ -3,6 +3,7 @@
 use App\Helpers\Response;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\InputTypeController;
+use App\Http\Controllers\OutputTypeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,15 @@ Route::prefix("input-types")->middleware(["auth:sanctum"])->group(function () {
     Route::post("create", [InputTypeController::class, "create"]);
     Route::put("update/{id}", [InputTypeController::class, "update"]);
     Route::put("update-active/{id}", [InputTypeController::class, "updateActive"]);
+});
+
+Route::prefix("output-types")->middleware(["auth:sanctum"])->group(function () {
+    Route::get("get-all", [OutputTypeController::class, "getAll"]);
+    Route::get("get-all-active", [OutputTypeController::class, "getAllActives"]);
+    Route::get("get-by-id/{id}", [OutputTypeController::class, "getById"]);
+    Route::post("create", [OutputTypeController::class, "create"]);
+    Route::put("update/{id}", [OutputTypeController::class, "update"]);
+    Route::put("update-active/{id}", [OutputTypeController::class, "updateActive"]);
 });
 
 Route::fallback(function () {

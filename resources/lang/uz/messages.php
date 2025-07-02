@@ -17,5 +17,6 @@ return [
     "unauthenticated" => "Tizimga kirishga huquqingiz yo'q",
 
     // INPUT TYPES
-    "input_type" => "Kirim turi"
+    "input_type" => "Kirim turi",
+    "output_type" => "Chiqim turi"
 ];
