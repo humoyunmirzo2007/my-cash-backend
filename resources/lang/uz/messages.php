@@ -18,5 +18,12 @@ return [
 
     // INPUT TYPES
     "input_type" => "Kirim turi",
-    "output_type" => "Chiqim turi"
+
+    // OUTPUT TYPES
+    "output_type" => "Chiqim turi",
+
+    // CASH BOX
+    "cash_box" => "Kassa",
+    "cash_box_exists_by_currency" => "Sizda ushbu valyuta bo'yicha kassa mavjud",
+    "valid_currencies" => "Valyuta turi faqat UZS yoki USD bo'lishi mumkin"
 ];

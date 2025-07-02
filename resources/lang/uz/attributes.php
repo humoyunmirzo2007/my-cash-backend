@@ -7,4 +7,5 @@ return [
     "username" => "Foydalanuvchi nomi",
     "password" => "Parol",
     "name" => "Nomi",
+    "currency" => "Valyuta turi",
 ];

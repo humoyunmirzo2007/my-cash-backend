@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-if (!function_exists('getPagination')) {
+if (!function_exists("getPagination")) {
 
     function getPagination($collection): array
     {
@@ -11,19 +11,19 @@ if (!function_exists('getPagination')) {
             : $collection;
 
         return [
-            'links' => [
-                'first' => $paginator->url(1),
-                'last' => $paginator->url($paginator->lastPage()),
-                'prev' => $paginator->previousPageUrl(),
-                'next' => $paginator->nextPageUrl(),
+            "links" => [
+                "first" => $paginator->url(1),
+                "last" => $paginator->url($paginator->lastPage()),
+                "prev" => $paginator->previousPageUrl(),
+                "next" => $paginator->nextPageUrl(),
             ],
-            'meta' => [
-                'current_page' => $paginator->currentPage(),
-                'from' => $paginator->firstItem(),
-                'path' => $paginator->path(),
-                'per_page' => $paginator->perPage(),
-                'to' => $paginator->lastItem(),
-                'last_page' => $paginator->lastPage(),
+            "meta" => [
+                "current_page" => $paginator->currentPage(),
+                "from" => $paginator->firstItem(),
+                "path" => $paginator->path(),
+                "per_page" => $paginator->perPage(),
+                "to" => $paginator->lastItem(),
+                "last_page" => $paginator->lastPage(),
             ]
         ];
     }

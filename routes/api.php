@@ -2,6 +2,7 @@
 
 use App\Helpers\Response;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CashBoxController;
 use App\Http\Controllers\InputTypeController;
 use App\Http\Controllers\OutputTypeController;
 use Illuminate\Http\Request;
@@ -34,6 +35,12 @@ Route::prefix("output-types")->middleware(["auth:sanctum"])->group(function () {
     Route::post("create", [OutputTypeController::class, "create"]);
     Route::put("update/{id}", [OutputTypeController::class, "update"]);
     Route::put("update-active/{id}", [OutputTypeController::class, "updateActive"]);
+});
+
+Route::prefix("cash-box")->middleware(["auth:sanctum"])->group(function () {
+    Route::get("get-all", [CashBoxController::class, "getAll"]);
+    Route::get("get-by-id/{id}", [CashBoxController::class, "getById"]);
+    Route::post("create", [CashBoxController::class, "create"]);
 });
 
 Route::fallback(function () {

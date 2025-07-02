@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('output_types', function (Blueprint $table) {
             $table->id();
-            $table->string("name")->unique();
+            $table->foreignId("user_id")->constrained()->cascadeOnDelete();
+            $table->string("name");
             $table->boolean("active")->default(true);
             $table->timestamps();
+
+            $table->unique(["user_id", "name"]);
         });
     }
 
