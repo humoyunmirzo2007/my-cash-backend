@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Middleware\SetAccept;
-use App\Http\Middlewares\SetLocaleFromRequest;
+use App\Http\Middleware\SetLocaleFromRequest;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
