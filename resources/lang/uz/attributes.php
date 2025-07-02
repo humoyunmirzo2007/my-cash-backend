@@ -6,4 +6,5 @@ return [
     "last_name" => "Familiya",
     "username" => "Foydalanuvchi nomi",
     "password" => "Parol",
+    "name" => "Nomi",
 ];

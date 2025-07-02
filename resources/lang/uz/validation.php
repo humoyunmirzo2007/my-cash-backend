@@ -11,5 +11,6 @@ return [
         "string" => ":attribute ko‘pi bilan :max ta belgidan iborat bo‘lishi kerak.",
     ],
     "confirmed" => ":attribute tasdiqlanmagan.",
-    "unique" => ":attribute allaqachon mavjud.",
+    "unique" => "Bu :attribute bo'yicha avval yaratilgan.",
+    "exists" => "Bu :attribute bo'yicha ma'lumot mavjud emas.",
 ];
