@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
-class UpdateOutputType extends BaseRequest
+class UpdateInputTypeRequest extends BaseRequest
 {
     public function authorize(): bool
     {
@@ -14,13 +15,21 @@ class UpdateOutputType extends BaseRequest
     public function rules(): array
     {
         return [
-            "id" => ["required", "exists:output_types,id"],
+            "id" => [
+                "required",
+                "exists:input_types,id",
+                Rule::exists("input_types", "id")->where("user_id", Auth::id())
+            ],
             "name" => [
                 "required",
                 "string",
                 "min:3",
                 "max:255",
-                Rule::unique("output_types", "name")->ignore($this->route("id"))
+                Rule::unique("input_types", "name")
+                    ->ignore($this->route("id"))
+                    ->where(function ($query) {
+                        return $query->where("user_id", Auth::id());
+                    }),
             ]
         ];
     }

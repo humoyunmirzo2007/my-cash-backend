@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Response;
-use App\Http\Requests\StoreOutputType;
-use App\Http\Requests\UpdateOutputType;
-use App\Http\Requests\UpdateOutputTypeActive;
+use App\Http\Requests\StoreOutputTypeRequest;
+use App\Http\Requests\UpdateOutputTypeRequest;
+use App\Http\Requests\UpdateOutputTypeActiveRequest;
 use App\Http\Resources\OutputTypeResource;
 use App\Services\OutputTypeService;
 use Illuminate\Http\Request;
@@ -44,12 +44,12 @@ class OutputTypeController
         $outputType = $this->outputTypeService->getById($id);
 
         if (!$outputType) {
-            return Response::error(t("not_found"), status: 404);
+            return Response::error(t("not_found", "messages", ["output_type"]), status: 404);
         }
 
         return Response::success(data: $outputType);
     }
-    public function create(StoreOutputType $request)
+    public function create(StoreOutputTypeRequest $request)
     {
 
         $outputType = $this->outputTypeService->create($request->validated());
@@ -60,7 +60,7 @@ class OutputTypeController
             status: 201
         );
     }
-    public function update(int $id, UpdateOutputType $request)
+    public function update(int $id, UpdateOutputTypeRequest $request)
     {
         $outputType = $this->outputTypeService->update($id, $request->validated());
 
@@ -69,7 +69,7 @@ class OutputTypeController
             data: $outputType,
         );
     }
-    public function updateActive(int $id, UpdateOutputTypeActive $req)
+    public function updateActive(int $id, UpdateOutputTypeActiveRequest $req)
     {
 
         $outputType = $this->outputTypeService->updateActive($id);
