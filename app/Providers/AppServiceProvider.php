@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Interfaces\InputTypeRepositoryInterface;
+use App\Repositories\InputTypeRepository as RepositoriesInputTypeRepository;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Translation\FileLoader;
@@ -11,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
-    */
+     */
     public function register(): void
     {
         $this->app->singleton("translator", function ($app) {
@@ -22,6 +24,10 @@ class AppServiceProvider extends ServiceProvider
 
             return $translator;
         });
+        $this->app->bind(
+            InputTypeRepositoryInterface::class,
+            RepositoriesInputTypeRepository::class
+        );
     }
 
     /**
