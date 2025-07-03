@@ -20,7 +20,7 @@ class StoreCashBoxRequest extends BaseRequest
                 "in:USD,UZS",
                 Rule::unique("cash_boxes")->where(
                     fn($query) =>
-                    $query->where("user_id", Auth::user()->id)
+                    $query->where("user_id", Auth::id())
                 ),
             ],
         ];

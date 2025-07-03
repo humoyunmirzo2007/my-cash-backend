@@ -12,7 +12,7 @@ class CashBoxRepository implements CashBoxRepositoryInterface
     public function getAll(Request $request)
     {
         return CashBox::query()
-            ->where("user_id", Auth::user()->id)
+            ->where("user_id", Auth::id())
             ->when($request->search, function ($q, $search) {
                 $q->where(function ($query) use ($search) {
                     $query
@@ -30,14 +30,14 @@ class CashBoxRepository implements CashBoxRepositoryInterface
     public function getById(int $id)
     {
         return CashBox::where("id", $id)
-            ->where("user_id", Auth::user()->id)
+            ->where("user_id", Auth::id())
             ->first();
     }
 
     public function create(array $data)
     {
         return CashBox::create([
-            "user_id" => Auth::user()->id,
+            "user_id" => Auth::id(),
             "currency" => $data["currency"]
         ]);
     }

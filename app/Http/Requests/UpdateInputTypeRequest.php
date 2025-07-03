@@ -44,7 +44,7 @@ class UpdateInputTypeRequest extends BaseRequest
     public function validationData()
     {
         return array_merge($this->all(), [
-            'id' => $this->route('id'),
+            "id" => $this->route("id"),
         ]);
     }
 }

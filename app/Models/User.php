@@ -19,6 +19,11 @@ class User extends Authenticatable
         return $this->hasMany(CashBox::class);
     }
 
+    public function  cashBoxOperations(): HasMany
+    {
+        return $this->hasMany(CashBoxOperation::class);
+    }
+
     public function  inputTypes(): HasMany
     {
         return $this->hasMany(InputType::class);
