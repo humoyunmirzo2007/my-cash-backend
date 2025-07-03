@@ -18,7 +18,7 @@ class CashBoxConversion extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function fromCashbox(): BelongsTo
+    public function fromCashBox(): BelongsTo
     {
         return $this->belongsTo(CashBox::class);
     }
@@ -27,4 +27,16 @@ class CashBoxConversion extends Model
     {
         return $this->belongsTo(CashBox::class);
     }
-}
+
+    public function getToAmountAttribute($value)
+    {
+        $to_amount = (float) $value;
+        return ($to_amount == floor($to_amount)) ? (int) $to_amount : $to_amount;
+    }
+
+    public function getExchangeRateAttribute($value)
+    {
+        $exchange_rate = (float) $value;
+        return ($exchange_rate == floor($exchange_rate)) ? (int) $exchange_rate : $exchange_rate;
+    }
+}   

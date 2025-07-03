@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Interfaces\CashBoxConversionRepositoryInterface;
 use App\Interfaces\InputTypeRepositoryInterface;
+use App\Repositories\CashBoxConversionRepository;
 use App\Repositories\InputTypeRepository as RepositoriesInputTypeRepository;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
@@ -27,6 +29,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             InputTypeRepositoryInterface::class,
             RepositoriesInputTypeRepository::class
+        );
+        $this->app->bind(
+            CashBoxConversionRepositoryInterface::class,
+            CashBoxConversionRepository::class
         );
     }
 

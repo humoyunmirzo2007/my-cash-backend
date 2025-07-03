@@ -16,7 +16,11 @@ class CashBoxOperationRepository implements CashBoxOperationRepositoryInterface
         $operationType = $type === "INPUT" ? "inputType" : "outputType";
         $operationTypeIdColumn = $type === "INPUT" ? "input_type_id" : "output_type_id";
 
-        return CashBoxOperation::with($operationType)
+        return CashBoxOperation::with([
+            $operationType => function ($query) {
+                $query->select("id", "name");
+            }
+        ])
             ->where("user_id", Auth::id())
             ->whereNotNull($operationTypeIdColumn)
             ->when($request->search, function ($q) use ($request, $operationType) {
@@ -25,11 +29,11 @@ class CashBoxOperationRepository implements CashBoxOperationRepositoryInterface
                 $q->where(function ($query) use ($search, $operationType) {
                     $query
                         ->where("currency", "ILIKE", "%{$search}%")
-                        ->orWhereRaw("CAST(amount AS TEXT) ILIKE ?", ["%{$search}%"])
-                        ->orWhereHas($operationType, function ($q2) use ($search) {
-                            $q2->where("name", "ILIKE", "%{$search}%");
-                        });
+                        ->orWhereRaw("CAST(amount AS TEXT) ILIKE ?", ["%{$search}%"]);;
                 });
+            })
+            ->when($request->input($operationTypeIdColumn), function ($q) use ($request, $operationTypeIdColumn) {
+                $q->where($operationTypeIdColumn, $request->input($operationTypeIdColumn));
             })
             ->orderBy(
                 $request->input("sort_by", "id"),
@@ -45,7 +49,7 @@ class CashBoxOperationRepository implements CashBoxOperationRepositoryInterface
 
         $operation = CashBoxOperation::with([
             $operationType => function ($query) {
-                $query->select('id', 'name');
+                $query->select("id", "name");
             }
         ])
             ->where("user_id", Auth::id())

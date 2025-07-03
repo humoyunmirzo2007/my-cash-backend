@@ -53,7 +53,7 @@ class CashBoxOperationController
                 return Response::error(t("not_found", "messages", ["cash_box"]), status: 404);
             }
 
-            return Response::success(data: $cashBox);
+            return Response::success(data: new CashBoxResource($cashBox));
         } catch (ModelNotFoundException) {
             return Response::error(t("not_found", "messages", ["input_operation"]), status: 404);
         }
@@ -69,7 +69,7 @@ class CashBoxOperationController
                 return Response::error(t("not_found", "messages", ["cash_box"]), status: 404);
             }
 
-            return Response::success(data: $cashBox);
+            return Response::success(data: new CashBoxResource($cashBox));
         } catch (ModelNotFoundException) {
             return Response::error(t("not_found", "messages", ["output_operation"]), status: 404);
         }

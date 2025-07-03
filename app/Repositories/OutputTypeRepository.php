@@ -24,6 +24,7 @@ class OutputTypeRepository implements OutputTypeRepositoryInterface
             )
             ->paginate($request->input("per_page", 15));
     }
+
     public function getAllActives(Request $request)
     {
         return OutputType::query()
@@ -40,12 +41,14 @@ class OutputTypeRepository implements OutputTypeRepositoryInterface
             )
             ->paginate($request->input("per_page", 15));
     }
+
     public function getById(int $id)
     {
         return OutputType::where("id", $id)
             ->where("user_id", Auth::id())
             ->first();
     }
+
     public function create(array $data)
     {
         return OutputType::create([
@@ -54,6 +57,7 @@ class OutputTypeRepository implements OutputTypeRepositoryInterface
 
         ]);
     }
+
     public function update(int $id, array $data)
     {
         $outputType = OutputType::where("id", $id)
@@ -66,6 +70,7 @@ class OutputTypeRepository implements OutputTypeRepositoryInterface
 
         return $outputType;
     }
+    
     public function updateActive(int $id)
     {
         $outputType = OutputType::where("id", $id)
