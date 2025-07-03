@@ -34,6 +34,11 @@ class User extends Authenticatable
         return $this->hasMany(OutputType::class);
     }
 
+    public function  cashBoxConversions(): HasMany
+    {
+        return $this->hasMany(CashBoxConversion::class);
+    }
+
     protected $hidden = [
         'password',
     ];

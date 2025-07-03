@@ -3,12 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class CashBox extends Authenticatable
+class CashBoxConversion extends Model
 {
     use HasFactory, Notifiable;
 
@@ -18,8 +17,14 @@ class CashBox extends Authenticatable
     {
         return $this->belongsTo(User::class);
     }
-    public function  cashBoxConversions(): HasMany
+
+    public function fromCashbox(): BelongsTo
     {
-        return $this->hasMany(CashBoxConversion::class);
+        return $this->belongsTo(CashBox::class);
+    }
+
+    public function toCashBox(): BelongsTo
+    {
+        return $this->belongsTo(CashBox::class);
     }
 }

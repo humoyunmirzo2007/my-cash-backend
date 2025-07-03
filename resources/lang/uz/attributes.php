@@ -18,4 +18,5 @@ return [
     "output_operation" => "Chiqim amaliyoti",
     "cash_box" => "Kassa",
     "cash_box_operation" => "Kassa amaliyoti",
+    "cash_box_conversion" => "Valyuta ayirboshlash amaliyoti",
 ];

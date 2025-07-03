@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\CashBoxOperation;
 use App\Models\InputType;
 use App\Models\OutputType;
 use Illuminate\Support\Facades\Auth;
@@ -56,6 +57,16 @@ class UpdateCashBoxOperationRequest extends BaseRequest
                 $validator->errors()->add('input_type_id', t('only_one_of_input_or_output'));
             }
 
+            $operation = CashBoxOperation::find($this->route('id'));
+            if ($operation) {
+                if (!is_null($operation->input_type_id) && !$hasInput) {
+                    $validator->errors()->add('input_type_id', t('input_type_required_due_to_existing_data'));
+                }
+
+                if (!is_null($operation->output_type_id) && !$hasOutput) {
+                    $validator->errors()->add('output_type_id', t('output_type_required_due_to_existing_data'));
+                }
+            }
             if ($hasInput) {
                 $inputType = InputType::where('id', $this->input('input_type_id'))
                     ->where('user_id', Auth::id())
