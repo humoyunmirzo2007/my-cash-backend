@@ -21,5 +21,13 @@ return [
     "input_or_output_required" => "Kassa amaliyoti turini tanlash shart",
     "only_one_of_input_or_output" => "Kassa amaliyoti Kirim yoki Chiqim bo'lishi kerak",
     "not_belongs_to_user" => ":item ushbu foydalanuvchiga tegishli emas",
-    "not_enough_amount_in_cash" => "Kassada yetarli summa mavjud emas."
+    "not_enough_amount_in_cash" => "Kassada yetarli summa mavjud emas.",
+    "input_type_required_due_to_existing_data" => "Kirim turini tanlash majburiy",
+    "output_type_required_due_to_existing_data" => "Chiqim turini tanlash majburiy",
+
+    "from_cash_box_id_required" => "Qaysi kassadan pul chiqishini ko‘rsating.",
+    "to_cash_box_id_required" => "Qaysi kassaga pul tushishini ko‘rsating.",
+    "from_cash_box_id_different" => "Kassalar bir xil bo‘lmasligi kerak.",
+    "from_amount_gt" => "Konvertatsiya summasi 0 dan katta bo‘lishi kerak.",
+    "exchange_rate_gt" => "Valyuta kursi 0 dan katta bo‘lishi kerak.",
 ];

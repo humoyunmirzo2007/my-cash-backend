@@ -3,6 +3,7 @@
 use App\Helpers\Response;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CashBoxController;
+use App\Http\Controllers\CashBoxConversionController;
 use App\Http\Controllers\CashBoxOperationController;
 use App\Http\Controllers\InputTypeController;
 use App\Http\Controllers\OutputTypeController;
@@ -52,6 +53,11 @@ Route::prefix("cash-box-operations")->middleware(["auth:sanctum"])->group(functi
     Route::post("create", [CashBoxOperationController::class, "create"]);
     Route::put("update/{id}", [CashBoxOperationController::class, "update"]);
     Route::delete("delete/{id}", [CashBoxOperationController::class, "delete"]);
+});
+
+Route::prefix("cash-box-conversions")->middleware(["auth:sanctum"])->group(function () {
+    Route::get("get-all", [CashBoxConversionController::class, "getAll"]);
+    Route::post("create", [CashBoxConversionController::class, "create"]);
 });
 
 Route::fallback(function () {
