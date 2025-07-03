@@ -40,13 +40,13 @@ class User extends Authenticatable
     }
 
     protected $hidden = [
-        'password',
+        "password",
     ];
 
     protected function casts(): array
     {
         return [
-            'password' => 'hashed',
+            "password" => "hashed",
         ];
     }
 }

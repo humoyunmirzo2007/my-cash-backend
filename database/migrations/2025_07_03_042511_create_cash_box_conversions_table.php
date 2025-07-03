@@ -22,7 +22,7 @@ return new class extends Migration
                 ->restrictOnDelete();
             $table->decimal('from_amount', 10, 2);
             $table->decimal('to_amount', 10, 2);
-            $table->decimal('exchange_rate', 12, 4);
+            $table->decimal('exchange_rate', 12, 2);
             $table->text('comment')->nullable();
             $table->timestamps();
         });

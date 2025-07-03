@@ -24,6 +24,7 @@ class InputTypeRepository implements InputTypeRepositoryInterface
             )
             ->paginate($request->input("per_page", 15));
     }
+
     public function getAllActives(Request $request)
     {
         return InputType::query()
@@ -40,12 +41,14 @@ class InputTypeRepository implements InputTypeRepositoryInterface
             )
             ->paginate($request->input("per_page", 15));
     }
+
     public function getById(int $id)
     {
         return InputType::where("id", $id)
             ->where("user_id", Auth::id())
             ->first();
     }
+
     public function create(array $data)
     {
         return InputType::create([
@@ -53,6 +56,7 @@ class InputTypeRepository implements InputTypeRepositoryInterface
             "user_id" => Auth::id()
         ]);
     }
+
     public function update(int $id, array $data)
     {
         $inputType = InputType::where("id", $id)
@@ -65,6 +69,7 @@ class InputTypeRepository implements InputTypeRepositoryInterface
 
         return $inputType;
     }
+
     public function updateActive(int $id)
     {
         $inputType = InputType::where("id", $id)
