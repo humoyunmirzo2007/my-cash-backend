@@ -12,33 +12,33 @@ class InputTypeRepository implements InputTypeRepositoryInterface
     public function getAll(Request $request)
     {
         return InputType::query()
-            ->where("user_id", Auth::user()->id)
+            ->where("user_id", Auth::id())
             ->when(
                 $request->search,
                 fn($q, $search) =>
-                $q->where('name', 'ILIKE', "%{$search}%")
+                $q->where("name", "ILIKE", "%{$search}%")
             )
             ->orderBy(
-                $request->input('sort_by', 'id'),
-                $request->input('order_by', 'desc')
+                $request->input("sort_by", "id"),
+                $request->input("order_by", "desc")
             )
-            ->paginate($request->input('per_page', 15));
+            ->paginate($request->input("per_page", 15));
     }
     public function getAllActives(Request $request)
     {
         return InputType::query()
-            ->where("user_id", Auth::user()->id)
+            ->where("user_id", Auth::id())
             ->where("active", true)
             ->when(
                 $request->search,
                 fn($q, $search) =>
-                $q->where('name', 'ILIKE', "%{$search}%")
+                $q->where("name", "ILIKE", "%{$search}%")
             )
             ->orderBy(
-                $request->input('sort_by', 'id'),
-                $request->input('order_by', 'desc')
+                $request->input("sort_by", "id"),
+                $request->input("order_by", "desc")
             )
-            ->paginate($request->input('per_page', 15));
+            ->paginate($request->input("per_page", 15));
     }
     public function getById(int $id)
     {
@@ -50,7 +50,7 @@ class InputTypeRepository implements InputTypeRepositoryInterface
     {
         return InputType::create([
             "name" => $data["name"],
-            "user_id" => Auth::user()->id
+            "user_id" => Auth::id()
         ]);
     }
     public function update(int $id, array $data)

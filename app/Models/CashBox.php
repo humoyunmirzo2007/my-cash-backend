@@ -15,6 +15,6 @@ class CashBox extends Authenticatable
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(CashBox::class);
+        return $this->belongsTo(User::class);
     }
 }
