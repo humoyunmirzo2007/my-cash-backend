@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Response;
 use App\Http\Requests\StoreCashBoxRequest;
-use App\Http\Requests\UpdateCashBoxRequest;
-use App\Http\Resources\CashBoxResource;
+use App\Http\Resources\CashBoxOperationResource;
 use App\Services\CashBoxService;
 use Illuminate\Http\Request;
 
@@ -20,7 +19,7 @@ class CashBoxController
 
     public function getAll(Request $request)
     {
-        $collection = CashBoxResource::collection(
+        $collection = CashBoxOperationResource::collection(
             $this->cashBoxService->getAll($request)
         );
 

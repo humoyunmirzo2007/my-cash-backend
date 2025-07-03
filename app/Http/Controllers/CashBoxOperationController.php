@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\Response;
 use App\Http\Requests\StoreCashBoxOperationRequest;
 use App\Http\Requests\UpdateCashBoxOperationRequest;
-use App\Http\Resources\CashBoxResource;
+use App\Http\Resources\CashBoxOperationResource;
 use App\Services\CashBoxOperationService;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -21,7 +21,7 @@ class CashBoxOperationController
 
     public function getIncomes(Request $request)
     {
-        $collection = CashBoxResource::collection(
+        $collection = CashBoxOperationResource::collection(
             $this->cashBoxOperationService->getOperations($request, "INPUT")
         );
 
@@ -33,7 +33,7 @@ class CashBoxOperationController
 
     public function getOutputs(Request $request)
     {
-        $collection = CashBoxResource::collection(
+        $collection = CashBoxOperationResource::collection(
             $this->cashBoxOperationService->getOperations($request, "OUTPUT")
         );
 
@@ -53,7 +53,7 @@ class CashBoxOperationController
                 return Response::error(t("not_found", "messages", ["cash_box"]), status: 404);
             }
 
-            return Response::success(data: new CashBoxResource($cashBox));
+            return Response::success(data: new CashBoxOperationResource($cashBox));
         } catch (ModelNotFoundException) {
             return Response::error(t("not_found", "messages", ["input_operation"]), status: 404);
         }
@@ -69,7 +69,7 @@ class CashBoxOperationController
                 return Response::error(t("not_found", "messages", ["cash_box"]), status: 404);
             }
 
-            return Response::success(data: new CashBoxResource($cashBox));
+            return Response::success(data: new CashBoxOperationResource($cashBox));
         } catch (ModelNotFoundException) {
             return Response::error(t("not_found", "messages", ["output_operation"]), status: 404);
         }
